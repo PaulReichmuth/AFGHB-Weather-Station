@@ -6,12 +6,13 @@ import time
 import os, sys
 
 aggregated = ""
+branch = "master"
 
 def CheckForUpdate(workingDir):
     print("Fetching most recent code from source..." + workingDir)
 
     # Fetch most up to date version of code.
-    p = git("--git-dir=" + workingDir + ".git/", "--work-tree=" + workingDir, "fetch", "origin", "testing", _out=ProcessFetch, _out_bufsize=0, _tty_in=True)
+    p = git("--git-dir=" + workingDir + ".git/", "--work-tree=" + workingDir, "fetch", "origin", branch, _out=ProcessFetch, _out_bufsize=0, _tty_in=True)
     print("Fetch complete.")
     time.sleep(2)
     print("Checking status for " + workingDir + "...")
@@ -41,7 +42,7 @@ if __name__ == "__main__":
         print("*********** Checking for code update **************")
         if CheckForUpdate(gitDir):
             print("Resetting code...")
-            resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/testing")
+            resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
             print(str(resetCheck))
         print("Check complete. Waiting for " + str(checkTimeSec) + "seconds until next check...", True)
         time.sleep(checkTimeSec)
