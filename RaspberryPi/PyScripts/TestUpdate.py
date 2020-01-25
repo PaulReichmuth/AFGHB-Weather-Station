@@ -15,7 +15,7 @@ def CheckForUpdate(workingDir):
     print("Checking status for " + workingDir + "...")
     statusCheck = git("--git-dir=" + workingDir + ".git/", "--work-tree=" + workingDir, "status")
 
-    if "auf dem selben Stand" in statusCheck:
+    if "auf demselben Stand" in statusCheck:
         print("Status check passes.")
         print("Code up to date.")
         return False
