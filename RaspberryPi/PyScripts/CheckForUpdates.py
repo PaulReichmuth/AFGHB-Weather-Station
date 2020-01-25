@@ -1,5 +1,6 @@
 #!/usr/bin/python
-
+# Code originally made by John Grant
+# https://medium.com/@johngrant/updating-distributed-raspberrypis-with-automatic-code-updates-3336aa0bcca1
 import sh
 from sh import git
 import time
