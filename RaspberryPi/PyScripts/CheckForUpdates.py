@@ -5,9 +5,19 @@ import sh
 from sh import git
 import time
 import os, sys
+import argparse
+
+parser = argparse.ArgumentParser(description='Update a git directory from a selected branch')
+parser.add_argument('branch', metavar='branch', type=str ,help='branch to update from')
+parser.add_argument('dir', metavar='directory', type=str ,help='directory to update', default="/WeatherStation/")
+
+args = parser.parse_args()
+print ("branch = " + args.branch)
+print ("directory = " + args.dir)
 
 aggregated = ""
-branch = "master"
+branch = args.branch
+gitDir = args.dir
 
 def CheckForUpdate(workingDir):
     print("Fetching most recent code from source..." + workingDir)
@@ -38,7 +48,6 @@ def ProcessFetch(char, stdin):
 
 if __name__ == "__main__":
     checkTimeSec = 60
-    gitDir = "/WeatherStation/"
     while True:
         print("*********** Checking for code update **************")
         if CheckForUpdate(gitDir):
