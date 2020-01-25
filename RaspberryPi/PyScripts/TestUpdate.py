@@ -32,7 +32,8 @@ def ProcessFetch(char, stdin):
         print(mainLogger, "Entering password...", True)
         stdin.put("yourpassword\n")
 
-if __name__ == "__main__":    checkTimeSec = 60
+if __name__ == "__main__":
+    checkTimeSec = 60
     gitDir = "/WeatherStation/"
     while True:
         print("*********** Checking for code update **************")
