@@ -1,33 +1,48 @@
 #include <senseBoxIO.h>
+#include <math.h>
 String dir[8] = {"N", "NE", "E", "SE", "S", "SW", "W", "NW"};
 int dirnum = 0;
+int samplesize = 60;
 
 void setup() {
   Serial.begin(115200);
   senseBoxIO.statusRed();
   while (!Serial);
-  senseBoxIO.statusNone();
-  senseBoxIO.statusGreen();
-  delay(250);
-  senseBoxIO.powerXB1(true);
-  delay(250);
-  senseBoxIO.powerUART(true);
-  delay(250);
-  senseBoxIO.powerI2C(true);
-  delay(250);
-  senseBoxIO.powerXB2(true);
+  if (Serial) {
+    senseBoxIO.statusNone();
+    senseBoxIO.statusGreen();
+    delay(250);
+    senseBoxIO.powerXB1(true);
+    delay(250);
+    senseBoxIO.powerUART(true);
+    delay(250);
+    senseBoxIO.powerI2C(true);
+    delay(250);
+    senseBoxIO.powerXB2(true);
+    //Serial.print("Samplesize: ");
+    //Serial.println(samplesize);
+  }
 }
 
 void loop() {
-  Serial.print("Wind ");
-  Serial.println(dirnum);
-  Serial.print("Speed ");
-  Serial.println(random(analogRead(2)));
-  delay(2500);
-  dirnum ++;
-  if (dirnum > 8) {
-    dirnum = 0;
+  int speeds[60];
+  int dirs[60];
+  for (int i; i <= 60; i ++) {
+    speeds[i] = random(analogRead(6));
+    dirs[i] = random(8);
+    Serial.print("Took Sample Num.: ");
+    Serial.println(i);
+    delay(1000);
   }
+  int avgdir = round(average(dirs, 60));
+  if (avgdir > 8){
+    avgdir = 8;
+  }
+  Serial.print("Wind ");
+  Serial.println(avgdir);
+  Serial.print("Speed ");
+  Serial.println(round(average(speeds, 60)));
+  delay(2500);
   if (!Serial) {
     senseBoxIO.statusNone();
     senseBoxIO.statusRed();
@@ -41,4 +56,12 @@ void loop() {
     senseBoxIO.powerXB2(false);
     setup();
   }
+}
+
+float average (int * array, int len)  // assuming array is int.
+{
+  long sum = 0L ;  // sum will be larger than an item, long for safety.
+  for (int i = 0 ; i < len ; i++)
+    sum += array [i] ;
+  return  ((float) sum) / len ;  // average will be fractional, so float may be appropriate.
 }
