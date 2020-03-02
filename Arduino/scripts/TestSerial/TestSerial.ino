@@ -1,12 +1,11 @@
 #include <Wire.h>
-#include <senseBoxIO.h>
-#include <Adafruit_HDC1000.h>
+#include "SenseBoxMCU.h"
 #include <math.h>
 String dir[8] = {"N", "NE", "E", "SE", "S", "SW", "W", "NW"};
 int dirnum = 0;
 int samplesize = 60;
 
-Adafruit_HDC1000 hdc;
+HDC1080 hdc;
 
 void setup() {
   Serial.begin(115200);
@@ -27,7 +26,7 @@ void setup() {
     //Serial.print("Samplesize: ");
     //Serial.println(samplesize);
   }
-  hdc.begin(0x43);
+  hdc.begin();
   
 }
 
@@ -37,10 +36,10 @@ void loop() {
   int temps[60];
   int humis[60];
   for (int i; i <= samplesize; i ++) {
-    speeds[i] = random(analogRead(6));
+    speeds[i] = random(80);
     dirs[i] = random(8);
-    temps[i] = hdc.readTemperature();
-    humis[i] = hdc.readHumidity();
+    temps[i] = hdc.getTemperature();
+    humis[i] = hdc.getHumidity();
     Serial.print("Took Sample Num.: ");
     Serial.println(i);
     delay(1000);
