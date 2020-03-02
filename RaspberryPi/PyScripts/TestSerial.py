@@ -16,6 +16,12 @@ try:
 		elif "Speed" in response:
 			print("Windspeed " + response.strip("Speed "))
 			pub.single("sensors/data/wind/speed", response.strip("Speed "))
+		elif "Temp" in response:
+			print("Temperature " + response.strip("Temp "))
+			pub.single("sensors/data/atmo/temp", response.strip("Temp "))
+		elif "Humi" in response:
+			print("Humidity " + response.strip("Humi "))
+			pub.single("sensors/data/atmo/humi", response.strip("Humi "))
 except KeyboardInterrupt:
 	s.close()
 	exit(0)

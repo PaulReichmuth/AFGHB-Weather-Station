@@ -1,11 +1,16 @@
+#include <Wire.h>
 #include <senseBoxIO.h>
+#include <Adafruit_HDC1000.h>
 #include <math.h>
 String dir[8] = {"N", "NE", "E", "SE", "S", "SW", "W", "NW"};
 int dirnum = 0;
 int samplesize = 60;
 
+Adafruit_HDC1000 hdc;
+
 void setup() {
   Serial.begin(115200);
+  Wire.begin();
   senseBoxIO.statusRed();
   while (!Serial);
   if (Serial) {
@@ -22,14 +27,20 @@ void setup() {
     //Serial.print("Samplesize: ");
     //Serial.println(samplesize);
   }
+  hdc.begin(0x43);
+  
 }
 
 void loop() {
   int speeds[60];
   int dirs[60];
-  for (int i; i <= 60; i ++) {
+  int temps[60];
+  int humis[60];
+  for (int i; i <= samplesize; i ++) {
     speeds[i] = random(analogRead(6));
     dirs[i] = random(8);
+    temps[i] = hdc.readTemperature();
+    humis[i] = hdc.readHumidity();
     Serial.print("Took Sample Num.: ");
     Serial.println(i);
     delay(1000);
@@ -38,11 +49,17 @@ void loop() {
   if (avgdir > 8){
     avgdir = 8;
   }
+  int avgtemp = round(average(temps, 60));
+  int avghumi = round(average(humis, 60));
+  
   Serial.print("Wind ");
   Serial.println(avgdir);
   Serial.print("Speed ");
   Serial.println(round(average(speeds, 60)));
-  delay(2500);
+  Serial.print("Temp ");
+  Serial.println(avgtemp);
+  Serial.print("Humi ");
+  Serial.println(avghumi);
   if (!Serial) {
     senseBoxIO.statusNone();
     senseBoxIO.statusRed();
