@@ -1,2 +1,2 @@
-# AFGHB Weather Station
- A locally mounted weather station at Anne-Frank-Gesamtschule Havixbeck-Billerbeck, measuring Wind Speed and Direction, amount of Rain, Lux and UV and Temperature and Humidity as well as Pressure. Running on a RaspberryPi4 and a Sensebox MCU.
+# AFGHB Weather Station - Arduino Update Branch
+Pushing on this Branch will update the code on the senseBoxMCU unit inside of the Weather-Station unit. Use with caution!
