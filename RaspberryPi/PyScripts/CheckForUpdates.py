@@ -78,7 +78,7 @@ if __name__ == "__main__":
         if CheckForUpdate(gitDir):
             logger.debug("Resetting code...")
             resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
-            logger.info(str(datetime.datetime.now + " : " +str(resetCheck))
+            logger.info(str(datetime.datetime.now) + " : " +str(resetCheck))
             message = "Update applied:" + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
             telegram_notify(message)
         logger.debug("Check complete. Waiting for " + str(checkTimeSec) + "seconds until next check...")
