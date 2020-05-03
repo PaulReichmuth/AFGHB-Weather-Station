@@ -11,7 +11,7 @@ import logging
 import datetime
 
 logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.WARNING)
 
 ch = logging.StreamHandler()
 ch.setLevel(logging.INFO)
@@ -59,7 +59,7 @@ def CheckForUpdate(workingDir):
         logger.info("Code up to date.")
         return False
     else:
-        logger.warning(str(datetime.datetime.now) + ": Code update available.")
+        logger.warning(str(datetime.datetime.now()) + ": Code update available.")
         return True
 
 def ProcessFetch(char, stdin):
@@ -78,7 +78,7 @@ if __name__ == "__main__":
         if CheckForUpdate(gitDir):
             logger.info("Resetting code...")
             resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
-            logger.warning(str(datetime.datetime.now) + " : " +str(resetCheck))
+            logger.warning(str(datetime.datetime.now()) + " : " +str(resetCheck))
             message = "Update applied:" + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
             telegram_notify(message)
         logger.info("Check complete. Waiting for " + str(checkTimeSec) + "seconds until next check...")
