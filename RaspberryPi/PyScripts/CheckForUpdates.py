@@ -11,14 +11,14 @@ import logging
 import datetime
 
 logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 ch = logging.StreamHandler()
-ch.setLevel(logging.DEBUG)
+ch.setLevel(logging.INFO)
 logger.addHandler(ch)
 
 fh = logging.FileHandler('logs/Updater.log')
-fh.setLevel(logging.INFO)
+fh.setLevel(logging.WARNING)
 logger.addHandler(fh)
 
 
@@ -28,8 +28,8 @@ parser.add_argument('branch', metavar='branch', type=str ,help='branch to update
 parser.add_argument('dir', metavar='directory', type=str ,help='directory to update', default="/WeatherStation/")
 
 args = parser.parse_args()
-logger.debug("branch = " + args.branch)
-logger.debug("directory = " + args.dir)
+logger.info("branch = " + args.branch)
+logger.info("directory = " + args.dir)
 
 aggregated = ""
 branch = args.branch
@@ -45,21 +45,21 @@ def telegram_notify(bot_message):
     return response.json()
 
 def CheckForUpdate(workingDir):
-    logger.debug("Fetching most recent code from source..." + workingDir)
+    logger.info("Fetching most recent code from source..." + workingDir)
 
     # Fetch most up to date version of code.
     p = git("--git-dir=" + workingDir + ".git/", "--work-tree=" + workingDir, "fetch", "origin", branch, _out=ProcessFetch, _out_bufsize=0, _tty_in=True)
-    logger.debug("Fetch complete.")
+    logger.info("Fetch complete.")
     time.sleep(2)
-    logger.debug("Checking status for " + workingDir + "...")
+    logger.info("Checking status for " + workingDir + "...")
     statusCheck = git("--git-dir=" + workingDir + ".git/", "--work-tree=" + workingDir, "status")
 
     if "auf demselben Stand" in statusCheck:
-        logger.debug("Status check passes.")
-        logger.debug("Code up to date.")
+        logger.info("Status check passes.")
+        logger.info("Code up to date.")
         return False
     else:
-        logger.info(str(datetime.datetime.now) + ": Code update available.")
+        logger.warning(str(datetime.datetime.now) + ": Code update available.")
         return True
 
 def ProcessFetch(char, stdin):
@@ -74,12 +74,12 @@ def ProcessFetch(char, stdin):
 if __name__ == "__main__":
     checkTimeSec = 60
     while True:
-        logger.debug("*********** Checking for code update **************")
+        logger.info("*********** Checking for code update **************")
         if CheckForUpdate(gitDir):
-            logger.debug("Resetting code...")
+            logger.info("Resetting code...")
             resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
-            logger.info(str(datetime.datetime.now) + " : " +str(resetCheck))
+            logger.warning(str(datetime.datetime.now) + " : " +str(resetCheck))
             message = "Update applied:" + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
             telegram_notify(message)
-        logger.debug("Check complete. Waiting for " + str(checkTimeSec) + "seconds until next check...")
+        logger.info("Check complete. Waiting for " + str(checkTimeSec) + "seconds until next check...")
         time.sleep(checkTimeSec)
