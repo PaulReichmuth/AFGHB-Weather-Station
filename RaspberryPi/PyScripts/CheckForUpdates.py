@@ -65,7 +65,7 @@ if __name__ == "__main__":
             print("Resetting code...")
             resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
             print(str(resetCheck))
-            message = "Update applied:" + "\n" + str(resetCheck)
+            message = "Update applied:" + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
             telegram_notify(message)
         print("Check complete. Waiting for " + str(checkTimeSec) + "seconds until next check...")
         time.sleep(checkTimeSec)
