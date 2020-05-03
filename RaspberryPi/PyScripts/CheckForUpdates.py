@@ -17,7 +17,7 @@ ch = logging.StreamHandler()
 ch.setLevel(logging.DEBUG)
 logger.addHandler(ch)
 
-fh = logging.FileHandler('UpdateLog.log')
+fh = logging.FileHandler('logs/Updater.log')
 fh.setLevel(logging.INFO)
 logger.addHandler(fh)
 
