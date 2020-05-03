@@ -7,7 +7,7 @@ import time
 import os, sys
 import argparse
 import requests
-import logger
+import logging
 import datetime
 
 logger = logging.getLogger()
