@@ -14,7 +14,7 @@ measurement_name = "docker"
 
 client = docker.from_env()
 
-ls_cont = client.containers.list()
+ls_cont = client.containers.list(all=True)
 
 names = list()
 stats = list()
@@ -22,7 +22,10 @@ stats = list()
 for item in ls_cont:
 	ThisContainer = client.containers.get(item.id)
 	names.append(str(ThisContainer.name))
-	stats.append(str(ThisContainer.status))
+	if str(ThisContainer.status) == "running":
+		stats.append(1)
+	elif str(ThisContainer.status) == "exited":
+		stats.append(0)
 
 print(names)
 print(stats)
