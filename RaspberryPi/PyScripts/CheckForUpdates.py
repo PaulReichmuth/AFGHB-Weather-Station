@@ -24,14 +24,15 @@ logger.addHandler(fh)
 
 
 parser = argparse.ArgumentParser(description='Update a git directory from a selected branch')
-parser.add_argument('dir', metavar='directory', type=str ,help='directory to update', default="./",required=False)
+parser.add_argument('branch', metavar='branch', type=str ,help='branch to update from')
+parser.add_argument('dir', metavar='directory', type=str ,help='directory to update', default="/WeatherStation/")
 
 args = parser.parse_args()
 logger.info("branch = " + args.branch)
 logger.info("directory = " + args.dir)
 
 aggregated = ""
-branch = "arduino-update"
+branch = args.branch
 gitDir = args.dir
 
 def telegram_notify(bot_message):
@@ -72,13 +73,13 @@ def ProcessFetch(char, stdin):
 
 if __name__ == "__main__":
     checkTimeSec = 60
-    
-    logger.info("*********** Checking for code update **************")
-    if CheckForUpdate(gitDir):
-        logger.info("Resetting code...")
-        resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
-        logger.warning(str(datetime.datetime.now()) + " : " +str(resetCheck))
-        message = "Update applied:" + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
-        telegram_notify(message)
-    logger.info("Check complete. Waiting for " + str(checkTimeSec) + "seconds until next check...")
-    time.sleep(checkTimeSec)
+    while True:
+        logger.info("*********** Checking for code update **************")
+        if CheckForUpdate(gitDir):
+            logger.info("Resetting code...")
+            resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
+            logger.warning(str(datetime.datetime.now()) + " : " +str(resetCheck))
+            message = "Update applied:" + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
+            telegram_notify(message)
+        logger.info("Check complete. Waiting for " + str(checkTimeSec) + "seconds until next check...")
+        time.sleep(checkTimeSec)
