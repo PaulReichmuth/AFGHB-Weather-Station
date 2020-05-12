@@ -23,16 +23,15 @@ logger.addHandler(fh)
 
 
 
-parser = argparse.ArgumentParser(description='Update a git directory from a selected branch')
-parser.add_argument('dir', metavar='directory', type=str ,help='directory to update', default="./",required=False)
 
-args = parser.parse_args()
-logger.info("branch = " + args.branch)
-logger.info("directory = " + args.dir)
+
 
 aggregated = ""
 branch = "arduino-update"
-gitDir = args.dir
+gitDir = "./"
+
+logger.info("branch = " + branch)
+logger.info("directory = " + gitDir)
 
 def telegram_notify(bot_message):
     bot_token = '1198116152:AAGnSQK62eVTi1Lz1D5_8SHXkhJ_q0tF_4U'
@@ -78,7 +77,6 @@ if __name__ == "__main__":
         logger.info("Resetting code...")
         resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
         logger.warning(str(datetime.datetime.now()) + " : " +str(resetCheck))
-        message = "Update applied:" + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
+        message = "MCU Updated: " + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
+        os.system("./Arduino/mcu_updater.sh")
         telegram_notify(message)
-    logger.info("Check complete. Waiting for " + str(checkTimeSec) + "seconds until next check...")
-    time.sleep(checkTimeSec)
