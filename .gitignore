@@ -131,5 +131,5 @@ dmypy.json
 logs/
 
 #compiled data
-.bin
-.elf
+*.bin
+*.elf
