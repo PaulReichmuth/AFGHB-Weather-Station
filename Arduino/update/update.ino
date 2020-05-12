@@ -1,6 +1,6 @@
 
 void setup() {
-  delay(1.5)
+  delay(1)
 }
 
 void loop() {
