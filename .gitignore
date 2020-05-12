@@ -129,3 +129,7 @@ dmypy.json
 
 #log dir
 logs/
+
+#compiled data
+.bin
+.elf
