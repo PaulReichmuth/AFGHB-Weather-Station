@@ -11,6 +11,7 @@ void setup() {
   Serial.begin(115200);
   Wire.begin();
   senseBoxIO.statusRed();
+  senseboxIO.powerNone();
   while (!Serial);
   if (Serial) {
     senseBoxIO.statusNone();
