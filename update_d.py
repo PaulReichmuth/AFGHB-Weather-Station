@@ -78,5 +78,5 @@ if __name__ == "__main__":
         resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
         logger.warning(str(datetime.datetime.now()) + " : " +str(resetCheck))
         message = "MCU Updated: " + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
-        os.system("./Arduino/mcu_updater.sh")
+        os.system("sh ./Arduino/mcu_updater.sh")
         telegram_notify(message)
