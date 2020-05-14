@@ -240,7 +240,7 @@ void loop() {
       display.drawBitmap(0, 0, logo2, 128, 64, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
       display.display();
       imageselector ++;
-      berak;
+      break;
     default:
       imageselector = 1;
       break;
