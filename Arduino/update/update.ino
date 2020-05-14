@@ -191,6 +191,7 @@ void loop() {
     default:
       imageselector = 1;
       break;
+      l;
   }
   if (!Serial) {
     display.clearDisplay();
