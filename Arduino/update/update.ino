@@ -47,7 +47,7 @@ void loop() {
     temps[i] = hdc.getTemperature();
     humis[i] = hdc.getHumidity();
     uvs[i] = vml.getUvIntensity();
-    lights[i] = vml.getIlluminance();
+//    lights[i] = vml.getIlluminance();
     Serial.print("Took Sample Num.: ");
     Serial.println(i);
     delay(1000);
@@ -71,9 +71,9 @@ void loop() {
   Serial.println(avghumi);
   Serial.print("UV-raw ");
   Serial.println(avguv);
-  Serial.print("UV-Index" )
+  Serial.print("UV-Index" );
   Serial.println(getUVI(avguv));
-  Serial.println()
+  Serial.println();
   if (!Serial) {
     senseBoxIO.statusNone();
     senseBoxIO.statusRed();
