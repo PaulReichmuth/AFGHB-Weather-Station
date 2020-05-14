@@ -234,13 +234,16 @@ void loop() {
       display.drawBitmap(0, 0, logo1, 128, 64, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
       display.display();
       imageselector ++;
+      break;
     case 2:
       display.clearDisplay(); //for Clearing the display
       display.drawBitmap(0, 0, logo2, 128, 64, WHITE); // display.drawBitmap(x position, y position, bitmap data, bitmap width, bitmap height, color)
       display.display();
       imageselector ++;
+      berak;
     default:
       imageselector = 1;
+      break;
   }
   if (!Serial) {
     display.clearDisplay();
