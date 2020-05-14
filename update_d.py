@@ -83,6 +83,7 @@ if __name__ == "__main__":
         if ok == 0:
                 os.system("rm log.txt")
                 git("checkout", branch)
+                git("pull")
                 telegram_notify(message)
         else:
                 with open("log.txt", "r") as f:
