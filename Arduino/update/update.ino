@@ -75,10 +75,10 @@ void loop() {
   Serial.println(avguv);
   Serial.print("UV-Index" );
   Serial.println(getUVI(avguv));
-  Serial.print("Lux ")
+  Serial.print("Lux ");
   Serial.println(avglight);
   Serial.println();
-  
+
   if (!Serial) {
     senseBoxIO.statusNone();
     senseBoxIO.statusRed();
