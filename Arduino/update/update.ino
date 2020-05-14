@@ -168,6 +168,7 @@ void setup() {
   display.clearDisplay();
   display.drawBitmap(0, 0, power, 128, 35, WHITE);
   display.display();
+  delay(100);
 }
 
 void loop() {
