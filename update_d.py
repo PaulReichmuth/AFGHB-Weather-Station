@@ -78,5 +78,15 @@ if __name__ == "__main__":
         resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
         logger.warning(str(datetime.datetime.now()) + " : " +str(resetCheck))
         message = "MCU Updated: " + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
-        os.system("sh ./Arduino/mcu_updater.sh")
-        telegram_notify(message)
+        ok = os.system("sh ./Arduino/mcu_updater.sh > log.txt")
+	if ok == 0:
+		os.system("rm log.txt")
+        	telegram_notify(message)
+	else:
+		with open("log.txt", r) as f:
+			lines = f.readlines()
+			message = "ERROR: "
+			for line in lines:
+				message = message + line + "\n"
+			f.close()
+		exit(code=1)
