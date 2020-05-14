@@ -84,7 +84,7 @@ if __name__ == "__main__":
                 os.system("rm log.txt")
                 telegram_notify(message)
         else:
-                with open("log.txt", r) as f:
+                with open("log.txt", "r") as f:
                         lines = f.readlines()
                         message = "ERROR: "
                         for line in lines:
