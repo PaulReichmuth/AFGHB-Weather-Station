@@ -194,7 +194,6 @@ void loop() {
   }
   if (!Serial) {
     display.clearDisplay();
-    display.drawBitmap(0, 0, power, 128, 35, WHITE);
     display.display();
     senseBoxIO.statusNone();
     senseBoxIO.statusRed();
