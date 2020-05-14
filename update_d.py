@@ -82,6 +82,7 @@ if __name__ == "__main__":
         print (ok)
         if ok == 0:
                 os.system("rm log.txt")
+		git("checkout" + branch)
                 telegram_notify(message)
         else:
                 with open("log.txt", "r") as f:
@@ -89,6 +90,8 @@ if __name__ == "__main__":
                         message = "error whilest moving to: " + str(resetCheck).strip("HEAD ist jetzt bei") + ":" + "\n"
                         for line in lines:
                                  message = message + line + "\n"
+                        message = message + "Reverting back to last version." + "\n"
+                        git("checkout","HEAD~1")
                         print(message)
                        	telegram_notify(message)
                         f.close()
