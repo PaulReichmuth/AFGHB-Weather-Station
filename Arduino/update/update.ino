@@ -7,6 +7,7 @@ int samplesize = 60;
 
 HDC1080 hdc;
 VEML6070 vml;
+TSL45315 lux_sensor;
 
 
 void setup() {
@@ -31,6 +32,7 @@ void setup() {
   }
   hdc.begin();
   vml.begin();
+  lux_sensor.begin();
   
 }
 
@@ -47,7 +49,7 @@ void loop() {
     temps[i] = hdc.getTemperature();
     humis[i] = hdc.getHumidity();
     uvs[i] = vml.getUvIntensity();
-//    lights[i] = vml.getIlluminance();
+    lights[i] = lux_sensor.getIlluminance();
     Serial.print("Took Sample Num.: ");
     Serial.println(i);
     delay(1000);
@@ -73,7 +75,10 @@ void loop() {
   Serial.println(avguv);
   Serial.print("UV-Index" );
   Serial.println(getUVI(avguv));
+  Serial.print("Lux ")
+  Serial.println(avglight);
   Serial.println();
+  
   if (!Serial) {
     senseBoxIO.statusNone();
     senseBoxIO.statusRed();
