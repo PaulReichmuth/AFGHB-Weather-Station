@@ -79,6 +79,7 @@ if __name__ == "__main__":
         logger.warning(str(datetime.datetime.now()) + " : " +str(resetCheck))
         message = "MCU Updated: " + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
        	ok = os.system("sh ./Arduino/mcu_updater.sh > log.txt")
+        print (ok)
         if ok == 0:
                 os.system("rm log.txt")
                 telegram_notify(message)
@@ -88,6 +89,7 @@ if __name__ == "__main__":
                         message = "ERROR: "
                         for line in lines:
                                  message = message + line + "\n"
-                                 telegram_notify(message)
+                        print(message)
+                       	telegram_notify(message)
                         f.close()
                 exit(code=1)
