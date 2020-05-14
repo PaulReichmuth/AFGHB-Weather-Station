@@ -6,6 +6,8 @@ int dirnum = 0;
 int samplesize = 60;
 
 HDC1080 hdc;
+VEML6070 vml;
+
 
 void setup() {
   Serial.begin(115200);
@@ -28,6 +30,7 @@ void setup() {
     //Serial.println(samplesize);
   }
   hdc.begin();
+  vml.begin();
   
 }
 
@@ -36,11 +39,15 @@ void loop() {
   int dirs[60];
   int temps[60];
   int humis[60];
+  int uvs[60];
+  int lights[60];
   for (int i; i <= samplesize; i ++) {
     speeds[i] = random(80);
     dirs[i] = random(8);
     temps[i] = hdc.getTemperature();
     humis[i] = hdc.getHumidity();
+    uvs[i] = vml.getUvIntensity();
+    lights[i] = vml.getIlluminance();
     Serial.print("Took Sample Num.: ");
     Serial.println(i);
     delay(1000);
@@ -51,6 +58,8 @@ void loop() {
   }
   int avgtemp = round(average(temps, 60));
   int avghumi = round(average(humis, 60));
+  int avguv = round(average(uvs, 60));
+  int avglight = round(average(lights, 60));
   
   Serial.print("Wind ");
   Serial.println(avgdir);
@@ -60,6 +69,11 @@ void loop() {
   Serial.println(avgtemp);
   Serial.print("Humi ");
   Serial.println(avghumi);
+  Serial.print("UV-raw ");
+  Serial.println(avguv);
+  Serial.print("UV-Index" )
+  Serial.println(getUVI(avguv));
+  Serial.println()
   if (!Serial) {
     senseBoxIO.statusNone();
     senseBoxIO.statusRed();
@@ -81,4 +95,11 @@ float average (int * array, int len)  // assuming array is int.
   for (int i = 0 ; i < len ; i++)
     sum += array [i] ;
   return  ((float) sum) / len ;  // average will be fractional, so float may be appropriate.
+}
+
+float getUVI(int uv) {//vml into Uv-Index
+
+  float refVal = 0.4; // Referenzwert: 0,01 W/m^2 ist äquivalent zu 0.4 als UV-Index
+  float uvi = refVal * (uv * 5.625) / 1000;
+  return uvi;
 }
