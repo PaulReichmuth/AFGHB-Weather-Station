@@ -22,6 +22,8 @@ try:
 		elif "Humi" in response:
 			print("Humidity " + re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			pub.single("sensors/data/atmo/humi", re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
+		elif "Lux" in response:
+			print("Lux " + re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 except KeyboardInterrupt:
 	s.close()
 	exit(0)
