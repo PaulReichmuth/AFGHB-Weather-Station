@@ -147,7 +147,8 @@ void loop() {
     uvs[i] = vml.getUvIntensity();
     lights[i] = lux_sensor.getIlluminance();
     Serial.print("Took Sample Num.: ");
-    Serial.println(i);
+    Serial.print(i);
+    Serial.println(" ");
     delay(1000);
   }
   int avgdir = round(average(dirs, 60));
