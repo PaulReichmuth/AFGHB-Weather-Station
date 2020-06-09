@@ -119,3 +119,4 @@ float getUVI(int uv) {//vml into Uv-Index
   float uvi = refVal * (uv * 5.625) / 1000;
   return uvi;
 }
+}
