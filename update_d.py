@@ -90,7 +90,7 @@ if __name__ == "__main__":
                         lines = f.readlines()
                         message = "error whilest moving to: " + str(resetCheck).strip("HEAD ist jetzt bei") + ":" + "\n"
                         for line in lines:
-                                 message = message + line + "\n"
+                                 message = message + str(line) + "\n"
                         message = message + "Reverting back to last version." + "\n"
                         telegram_notify(message)
                         git("checkout","HEAD~1")
