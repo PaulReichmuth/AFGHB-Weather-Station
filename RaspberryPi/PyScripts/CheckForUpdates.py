@@ -70,14 +70,11 @@ def ProcessFetch(char, stdin):
         stdin.put("yourpassword\n")
 
 if __name__ == "__main__":
-    checkTimeSec = 60
-    while True:
-        logger.info("*********** Checking for code update **************")
-        if CheckForUpdate(gitDir):
-            logger.info("Resetting code...")
-            resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
-            logger.warning(str(datetime.datetime.now()) + " : " +str(resetCheck))
-            message = "Update applied:" + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
-            telegram_notify(message)
-        logger.info("Check complete. Waiting for " + str(checkTimeSec) + "seconds until next check...")
-        time.sleep(checkTimeSec)
+    logger.info("*********** Checking for code update **************")
+    if CheckForUpdate(gitDir):
+        logger.info("Resetting code...")
+        resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
+        logger.warning(str(datetime.datetime.now()) + " : " +str(resetCheck))
+        message = "Update applied:" + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
+        telegram_notify(message)
+    logger.info("Check complete.)
