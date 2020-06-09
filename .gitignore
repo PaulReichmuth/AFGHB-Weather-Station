@@ -126,3 +126,10 @@ dmypy.json
 
 #VSCode directory
 .vscode/
+
+#log dir
+logs/
+
+#compiled data
+*.bin
+*.elf

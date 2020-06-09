@@ -27,9 +27,7 @@ parser = argparse.ArgumentParser(description='Update a git directory from a sele
 parser.add_argument('branch', metavar='branch', type=str ,help='branch to update from')
 parser.add_argument('dir', metavar='directory', type=str ,help='directory to update', default="/WeatherStation/")
 
-args = parser.parse_args()
-logger.info("branch = " + args.branch)
-logger.info("directory = " + args.dir)
+
 
 aggregated = ""
 branch = args.branch
