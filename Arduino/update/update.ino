@@ -118,4 +118,4 @@ float getUVI(int uv) {//vml into Uv-Index
   float refVal = 0.4; // Referenzwert: 0,01 W/m^2 ist äquivalent zu 0.4 als UV-Index
   float uvi = refVal * (uv * 5.625) / 1000;
   return uvi;
-}
+}}
