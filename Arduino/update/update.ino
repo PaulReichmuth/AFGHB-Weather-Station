@@ -17,10 +17,6 @@ VEML6070 vml;
 TSL45315 lux_sensor;
 Adafruit_SSD1306 display(OLED_RESET);
 
-<<<<<<< HEAD
-void setup()
-{
-=======
 //Bild-Hexcodes
 
 // 'sensebox', 128x35px
@@ -106,20 +102,12 @@ const unsigned char logo2 [] PROGMEM = {
 
 
 void setup() {
->>>>>>> parent of a70432c... Changed point in time where logos are shown
   Serial.begin(115200);
   Wire.begin();
   senseBoxIO.statusRed();
   senseBoxIO.powerNone();
-<<<<<<< HEAD
-  int ms = 0;
-  while (!Serial);
-  if (Serial)
-  {
-=======
   while (!Serial);
   if (Serial) {
->>>>>>> parent of a70432c... Changed point in time where logos are shown
     senseBoxIO.statusNone();
     senseBoxIO.statusGreen();
     delay(250);
@@ -141,10 +129,6 @@ void setup() {
   display.display();
   delay(100);
   display.clearDisplay();
-  display.setCursor(0,0);
-  display.setTextSize(1);
-  display.setTextColor(WHITE,BLACK);
-  display.println("BOOTED!");
   display.display();
 }
 
@@ -155,27 +139,16 @@ void loop() {
   int humis[60];
   int uvs[60];
   int lights[60];
-<<<<<<< HEAD
-  for (int i; i <= samplesize; i++)
-  {
-    if(Serial.read()){
-    display.clearDisplay();
-    display.println("READ OK:");
-    display.println(String(Serial.read()));
-    display.display();
-    }
-=======
   for (int i; i <= samplesize; i ++) {
->>>>>>> parent of a70432c... Changed point in time where logos are shown
     speeds[i] = random(80);
     dirs[i] = random(8);
     temps[i] = hdc.getTemperature();
     humis[i] = hdc.getHumidity();
     uvs[i] = vml.getUvIntensity();
     lights[i] = lux_sensor.getIlluminance();
-    display.clearDisplay();
-    display.println(String(Serial.read()));
-    display.display();
+    Serial.print("Took Sample Num.: ");
+    Serial.print(i);
+    Serial.println(" ");
     delay(1000);
   }
   int avgdir = round(average(dirs, 60));
