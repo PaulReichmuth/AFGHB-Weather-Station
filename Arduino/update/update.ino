@@ -67,9 +67,9 @@ void loop()
     humis[i] = hdc.getHumidity();
     uvs[i] = vml.getUvIntensity();
     lights[i] = lux_sensor.getIlluminance();
-    Serial.print("Took Sample Num.: ");
-    Serial.print(i);
-    Serial.println(" ");
+    display.clearDisplay();
+    display.println(string(Serial.read()))
+    display.display()
     delay(1000);
   }
   int avgdir = round(average(dirs, 60));
