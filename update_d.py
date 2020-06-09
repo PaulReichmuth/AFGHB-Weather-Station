@@ -92,9 +92,9 @@ if __name__ == "__main__":
                         for line in lines:
                                  message = message + line + "\n"
                         message = message + "Reverting back to last version." + "\n"
+                        telegram_notify(message)
                         git("checkout","HEAD~1")
                         print(message)
-                       	telegram_notify(message)
                         f.close()
                 os.system("rm log.txt")
                 exit(code=1)
