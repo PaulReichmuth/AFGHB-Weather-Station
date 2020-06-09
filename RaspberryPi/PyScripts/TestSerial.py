@@ -25,8 +25,8 @@ try:
         			"measurement": name,
         
         			"fields": {
-						"value":direction
-						"String":"N/A"
+						"value":direction,
+						"String":None,
 						"Unit": "°"
 					}
 				}
@@ -44,7 +44,7 @@ try:
         			"measurement": name,
         
         			"fields": {
-						"value":speed
+						"value":speed,
 						"unit":"m/s"
 					}
 				}
@@ -62,7 +62,7 @@ try:
         			"measurement": name,
         
         			"fields": {
-						"value":temp
+						"value":temp,
 						"Unit":"°C"
 					}
 				}
@@ -80,7 +80,7 @@ try:
         			"measurement": name,
         
         			"fields": {
-						"value":temp
+						"value":temp,
 						"Unit":"%"
 					}
 				}
@@ -98,7 +98,7 @@ try:
         			"measurement": name,
         
         			"fields": {
-						"value":lux
+						"value":lux,
 						"Unit":"lux"
 					}
 				}
