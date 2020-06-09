@@ -48,6 +48,10 @@ void setup()
   display.display();
   delay(100);
   display.clearDisplay();
+  display.setCursor(0,0);
+  display.setTextSize(1);
+  display.setTextColor(WHITE,BLACK);
+  display.println("BOOTED!");
   display.display();
 }
 
