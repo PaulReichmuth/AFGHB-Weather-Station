@@ -68,8 +68,8 @@ void loop()
     uvs[i] = vml.getUvIntensity();
     lights[i] = lux_sensor.getIlluminance();
     display.clearDisplay();
-    display.println(string(Serial.read()))
-    display.display()
+    display.println(String(Serial.read()));
+    display.display();
     delay(1000);
   }
   int avgdir = round(average(dirs, 60));
