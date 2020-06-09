@@ -26,7 +26,7 @@ try:
         
         			"fields": {
 						"value":direction
-						"String":None
+						"String":"N/A"
 						"Unit": "°"
 					}
 				}
