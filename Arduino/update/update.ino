@@ -61,6 +61,12 @@ void loop()
   int lights[60];
   for (int i; i <= samplesize; i++)
   {
+    if(Serial.read()){
+    display.clearDisplay();
+    display.println("READ OK:");
+    display.println(String(Serial.read()));
+    display.display();
+    }
     speeds[i] = random(80);
     dirs[i] = random(8);
     temps[i] = hdc.getTemperature();
