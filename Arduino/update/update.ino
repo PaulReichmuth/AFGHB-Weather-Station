@@ -78,6 +78,7 @@ void loop()
     uvs[i] = vml.getUvIntensity();
     lights[i] = lux_sensor.getIlluminance();
     display.clearDisplay();
+    display.setCursor(0,0);
     display.println(String(Serial.read()));
     display.display();
     delay(1000);
