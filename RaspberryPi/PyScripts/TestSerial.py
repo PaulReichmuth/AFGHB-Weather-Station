@@ -72,15 +72,15 @@ try:
 			ifclient.close()
 		elif "Humi" in response:
 			print("Humidity " + re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
-			temp = re.findall(r"[-+]?\d*\.\d+|\d+",response)[0]
+			humi = re.findall(r"[-+]?\d*\.\d+|\d+",response)[0]
 			ifdb = "Weather_Air"
-			name = "Temperature"
+			name = "Humidity"
 			body = [
     			{
         			"measurement": name,
         
         			"fields": {
-						"value":temp,
+						"value":humi,
 						"Unit":"%"
 					}
 				}
