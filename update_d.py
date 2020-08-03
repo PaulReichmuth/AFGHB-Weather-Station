@@ -78,5 +78,23 @@ if __name__ == "__main__":
         resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
         logger.warning(str(datetime.datetime.now()) + " : " +str(resetCheck))
         message = "MCU Updated: " + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
-        os.system("sh ./Arduino/mcu_updater.sh")
-        telegram_notify(message)
+       	ok = os.system("sh ./Arduino/mcu_updater.sh 2> log.txt")
+        print (ok)
+        if ok == 0:
+                os.system("rm log.txt")
+                git("checkout", branch)
+                git("pull")
+                telegram_notify(message)
+        else:
+                with open("log.txt", "r") as f:
+                        lines = f.readlines()
+                        message = "error whilest moving to: " + str(resetCheck).strip("HEAD ist jetzt bei") + ":" + "\n"
+                        for line in lines:
+                                 message = message + str(line) + "\n"
+                        message = message + "Reverting back to last version." + "\n"
+                        telegram_notify(message)
+                        git("checkout","HEAD~1")
+                        print(message)
+                        f.close()
+                os.system("rm log.txt")
+                exit(code=1)

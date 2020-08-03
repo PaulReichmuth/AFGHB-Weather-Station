@@ -1,6 +1,10 @@
 #include <Wire.h>
+#include <SPI.h>
 #include "SenseBoxMCU.h"
 #include <math.h>
+
+#define OLED_RESET 4
+
 String dir[8] = {"N", "NE", "E", "SE", "S", "SW", "W", "NW"};
 int dirnum = 0;
 int samplesize = 60;
@@ -56,7 +60,8 @@ void loop() {
     bmptemps[i] = bmp.getTemperature();
     lights[i] = lux.getIlluminance();
     Serial.print("Took Sample Num.: ");
-    Serial.println(i);
+    Serial.print(i);
+    Serial.println(" ");
     delay(1000);
   }
   int avgdir = round(average(dirs, 60));
@@ -69,17 +74,26 @@ void loop() {
   int avglight = round(average(lights, 60));
   
   Serial.print("Wind ");
-  Serial.println(avgdir);
+  Serial.print(avgdir);
+  Serial.println(" ");
   Serial.print("Speed ");
-  Serial.println(round(average(speeds, 60)));
+  Serial.print(round(average(speeds, 60)));
+  Serial.println(" ");
   Serial.print("Temp ");
-  Serial.println(avgtemp);
+  Serial.print(avgtemp);
+  Serial.println(" ");
   Serial.print("Humi ");
-  Serial.println(avghumi);
+  Serial.print(avghumi);
+  Serial.println(" ");
   Serial.print("UV-raw ");
-  Serial.println(avguv);
-  Serial.print("UV-Index" );
-  Serial.println(getUVI(avguv));
+  Serial.print(avguv);
+  Serial.println(" ");
+  Serial.print("UV-Index ");
+  Serial.print(getUVI(avguv));
+  Serial.println(" ");
+  Serial.print("Lux ");
+  Serial.print(avglight);
+  Serial.println(" ");
   Serial.println();
   if (!Serial) {
     senseBoxIO.statusNone();
