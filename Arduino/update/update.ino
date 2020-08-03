@@ -7,6 +7,8 @@ int samplesize = 60;
 
 HDC1080 hdc;
 VEML6070 vml;
+BMP280 bmp;
+TSL45315 lux;
 
 
 void setup() {
@@ -31,7 +33,8 @@ void setup() {
   }
   hdc.begin();
   vml.begin();
-  
+  bmp.begin();
+  lux.begin();
 }
 
 void loop() {
@@ -41,13 +44,17 @@ void loop() {
   int humis[60];
   int uvs[60];
   int lights[60];
+  int pressures[60];
+  int bmptemps[60];
   for (int i; i <= samplesize; i ++) {
     speeds[i] = random(80);
     dirs[i] = random(8);
     temps[i] = hdc.getTemperature();
     humis[i] = hdc.getHumidity();
     uvs[i] = vml.getUvIntensity();
-//    lights[i] = vml.getIlluminance();
+    pressures[i] = bmp.getPressure();
+    bmptemps[i] = bmp.getTemperature();
+    lights[i] = lux.getIlluminance();
     Serial.print("Took Sample Num.: ");
     Serial.println(i);
     delay(1000);
