@@ -71,7 +71,7 @@ void loop() {
   int avgpress = round(average(pressures, 60)) /100;
   int avgreftemp = round(average(bmptemps, 60));
   
-  
+  Serial.println("---BEGIN---");
   Serial.print("Wind ");
   Serial.println(avgdir);
   Serial.print("Speed ");
@@ -88,7 +88,7 @@ void loop() {
   Serial.println(avglight);
   Serial.print("Presssure ");
   Serial.println(avgpress);
-  Serial.println();
+  Serial.println("---END---");
   if (!Serial) {
     senseBoxIO.statusNone();
     senseBoxIO.statusRed();
