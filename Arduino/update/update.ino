@@ -38,17 +38,17 @@ void setup() {
 }
 
 void loop() {
-  int speeds[60];
-  int dirs[60];
-  int temps[60];
-  int humis[60];
-  int uvs[60];
-  int lights[60];
-  int pressures[60];
-  int bmptemps[60];
+  float speeds[60];
+  float dirs[60];
+  float temps[60];
+  float humis[60];
+  float uvs[60];
+  float lights[60];
+  float pressures[60];
+  float bmptemps[60];
   for (int i; i <= samplesize; i ++) {
     speeds[i] = random(80);
-    dirs[i] = random(8);
+    dirs[i] = random(16);
     temps[i] = hdc.getTemperature();
     humis[i] = hdc.getHumidity();
     uvs[i] = vml.getUvIntensity();
@@ -61,15 +61,15 @@ void loop() {
     delay(1000);
   }
   int avgdir = round(average(dirs, 60));
-  if (avgdir > 8){
-    avgdir = 8;
+  if (avgdir > 16){
+    avgdir = 16;
   }
-  int avgtemp = round(average(temps, 60));
-  int avghumi = round(average(humis, 60));
-  int avguv = round(average(uvs, 60));
-  int avglight = round(average(lights, 60));
-  int avgpress = round(average(pressures, 60)) /100;
-  int avgreftemp = round(average(bmptemps, 60));
+  float avgtemp = average(temps, 60);
+  float avghumi = average(humis, 60);
+  float avguv = average(uvs, 60);
+  float avglight = average(lights, 60);
+  float avgpress = average(pressures, 60) /100;
+  float avgreftemp = average(bmptemps, 60);
   
   Serial.println("---BEGIN---");
   Serial.print("Wind ");
@@ -104,7 +104,7 @@ void loop() {
   }
 }
 
-float average (int * array, int len)  // assuming array is int.
+float average (float * array, int len)  // assuming array is int.
 {
   long sum = 0L ;  // sum will be larger than an item, long for safety.
   for (int i = 0 ; i < len ; i++)
