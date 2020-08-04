@@ -179,6 +179,7 @@ try:
 			ifclient = InfluxDBClient(ifhost,ifport,ifuser,password=None,database=ifdb)
 			ifclient.write_points(body)
 			ifclient.close()
+		print(" ")
 except KeyboardInterrupt:
 	s.close()
 	exit(0)
