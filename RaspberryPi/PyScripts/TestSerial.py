@@ -108,7 +108,8 @@ try:
 			ifclient.close()
 		elif "Presssure" in response:
 			pressure = float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
-			print("Air Pressure" + str(pressure))
+			print("Air Pressure " + str(pressure))
+			
 			ifdb = "Weather_Air"
 			name = "Pressure"
 			body = [
