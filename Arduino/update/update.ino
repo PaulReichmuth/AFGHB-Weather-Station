@@ -68,7 +68,7 @@ void loop() {
   int avghumi = round(average(humis, 60));
   int avguv = round(average(uvs, 60));
   int avglight = round(average(lights, 60));
-  int avgpress = round(average(pressures, 60));
+  int avgpress = round(average(pressures, 60)) /100;
   int avgreftemp = round(average(bmptemps, 60));
   
   
