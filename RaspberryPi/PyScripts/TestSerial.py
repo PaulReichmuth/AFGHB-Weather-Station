@@ -25,7 +25,7 @@ try:
         			"measurement": name,
         
         			"fields": {
-						"value":direction,
+						"value":(360/16)*direction,
 						"String":None,
 						"Unit": "°"
 					}
@@ -92,7 +92,7 @@ try:
 			print("Lux " + re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			lux = float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			ifdb = "Weather_Sun"
-			name = "Light Intensity"
+			name = "Light_Intensity"
 			body = [
     			{
         			"measurement": name,
@@ -106,7 +106,7 @@ try:
 			ifclient = InfluxDBClient(ifhost,ifport,ifuser,password=None,database=ifdb)
 			ifclient.write_points(body)
 			ifclient.close()
-		elif "Pressure" in response:
+		elif "Presssure" in response:
 			pressure = float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			print("Air Pressure" + pressure)
 			ifdb = "Weather_Air"
