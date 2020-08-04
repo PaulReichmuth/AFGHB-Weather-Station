@@ -57,6 +57,7 @@ void loop() {
     lights[i] = lux.getIlluminance();
     Serial.print("Took Sample Num.: ");
     Serial.println(i);
+    Serial.println(pressures[i]);
     delay(1000);
   }
   int avgdir = round(average(dirs, 60));
@@ -87,8 +88,6 @@ void loop() {
   Serial.println(avglight);
   Serial.print("Presssure ");
   Serial.println(avgpress);
-  Serial.print("Reference Temp.");
-  Serial.println(avgreftemp);
   Serial.println();
   if (!Serial) {
     senseBoxIO.statusNone();
