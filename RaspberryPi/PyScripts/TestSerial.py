@@ -16,7 +16,7 @@ try:
 	while True:
 		response = str(s.readline())
 		if "Wind" in response:
-			print("Direction " + float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0]))
+			print("Direction " + re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			direction = float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			ifdb = "Weather_Wind"
 			name = "Direction"
@@ -35,7 +35,7 @@ try:
 			ifclient.write_points(body)
 			ifclient.close()
 		elif "Speed" in response:
-			print("Windspeed " + float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0]))
+			print("Windspeed " + re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			speed = float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			ifdb = "Weather_Wind"
 			name = "Speed"
@@ -53,7 +53,7 @@ try:
 			ifclient.write_points(body)
 			ifclient.close()
 		elif "Temp" in response:
-			print("Temperature " + float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0]))
+			print("Temperature " + re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			temp = float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			ifdb = "Weather_Air"
 			name = "Temperature"
@@ -71,7 +71,7 @@ try:
 			ifclient.write_points(body)
 			ifclient.close()
 		elif "Humi" in response:
-			print("Humidity " + float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0]))
+			print("Humidity " + re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			humi = float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			ifdb = "Weather_Air"
 			name = "Humidity"
@@ -89,7 +89,7 @@ try:
 			ifclient.write_points(body)
 			ifclient.close()
 		elif "Lux" in response:
-			print("Lux " + float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0]))
+			print("Lux " + re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			lux = float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			ifdb = "Weather_Sun"
 			name = "Light Intensity"
