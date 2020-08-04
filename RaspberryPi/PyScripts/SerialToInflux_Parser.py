@@ -144,7 +144,7 @@ try:
 			ifclient.write_points(body)
 			ifclient.close()
 		elif "UV-Index" in response:
-    		UVI = float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
+			UVI = float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			print("UV-Index " + str(UVI))
 			ifdb = "Weather_Sun"
 			name = "UV-Index"
