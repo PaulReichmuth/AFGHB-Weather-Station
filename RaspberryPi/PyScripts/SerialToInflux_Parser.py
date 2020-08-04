@@ -179,7 +179,12 @@ try:
 			ifclient = InfluxDBClient(ifhost,ifport,ifuser,password=None,database=ifdb)
 			ifclient.write_points(body)
 			ifclient.close()
-		print(" ")
+		
+
+		if "---END---" in response:
+			print(" ")
+			print("END OF BUFFER")
+			print(" ")
 except KeyboardInterrupt:
 	s.close()
 	exit(0)
