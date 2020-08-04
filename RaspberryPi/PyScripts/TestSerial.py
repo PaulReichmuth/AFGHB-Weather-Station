@@ -107,7 +107,7 @@ try:
 			ifclient.write_points(body)
 			ifclient.close()
 		elif "Pressure" in response:
-    		pressure = float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
+			pressure = float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			print("Air Pressure" + pressure)
 			ifdb = "Weather_Air"
 			name = "Pressure"
@@ -125,7 +125,7 @@ try:
 			ifclient.write_points(body)
 			ifclient.close()
 		elif "Reference Temp" in response:
-    		reftemp = float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
+			reftemp = float(re.findall(r"[-+]?\d*\.\d+|\d+",response)[0])
 			print("Reference Temp" + reftemp)
 			ifdb = "Weather_Air"
 			name = "Temp ref."
