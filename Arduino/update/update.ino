@@ -2,7 +2,7 @@
 #include "SenseBoxMCU.h"
 #include <math.h>
 String dir[8] = {"N", "NE", "E", "SE", "S", "SW", "W", "NW"};
-int dirnum = 0;
+int dirnum = 0
 int samplesize = 60;
 
 
