@@ -5,6 +5,7 @@ String dir[8] = {"N", "NE", "E", "SE", "S", "SW", "W", "NW"};
 int dirnum = 0;
 int samplesize = 60;
 
+
 HDC1080 hdc;
 VEML6070 vml;
 BMP280 bmp;
