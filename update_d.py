@@ -75,7 +75,7 @@ if __name__ == "__main__":
     logger.info("*********** Checking for code update **************")
     if CheckForUpdate(gitDir):
         logger.info("Stopping all daemons on Serial port...")
-        #stop SerialToInfluxParser
+        os.system("sudo systemctl stop SerialToInfluxParser.service");
         logger.info("Stopped!")
         logger.info("Resetting code...")
         resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
@@ -88,6 +88,7 @@ if __name__ == "__main__":
                 git("checkout", branch)
                 git("pull")
                 telegram_notify(message)
+		os.system("sudo systemctl start SerialToInfluxParser.service");
         else:
                 with open("log.txt", "r") as f:
                         lines = f.readlines()
@@ -100,4 +101,5 @@ if __name__ == "__main__":
                         print(message)
                         f.close()
                 os.system("rm log.txt")
+		os.system("sudo systemctl start SerialToInfluxParser.service");
                 exit(code=1)
