@@ -74,6 +74,9 @@ if __name__ == "__main__":
     
     logger.info("*********** Checking for code update **************")
     if CheckForUpdate(gitDir):
+        logger.info("Stopping all daemons on Serial port...")
+        #stop SerialToInfluxParser
+        logger.info("Stopped!")
         logger.info("Resetting code...")
         resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
         logger.warning(str(datetime.datetime.now()) + " : " +str(resetCheck))
