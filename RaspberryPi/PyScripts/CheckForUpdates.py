@@ -75,6 +75,6 @@ if __name__ == "__main__":
         logger.info("Resetting code...")
         resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
         logger.warning(str(datetime.datetime.now()) + " : " +str(resetCheck))
-        message = "Update applied:" + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
+        message = "Raspberry updated:" + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
         telegram_notify(message)
     logger.info("Check complete.)
