@@ -123,5 +123,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-#vscode Folder
+
+#VSCode directory
 .vscode/
+
+#log dir
+logs/
+
+#compiled data
+*.bin
+*.elf
+

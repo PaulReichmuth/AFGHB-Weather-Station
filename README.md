@@ -1,3 +1,2 @@
-# AFGHB Weather Station Testing Branch
-## Disclaimer
-This Branch is for code that is entirely for testing purposes only. It may be branch- and or device-/codebraking if any code in here is run. Consider this a WARNING 
+# AFGHB Weather Station
+ A locally mounted weather station at Anne-Frank-Gesamtschule Havixbeck-Billerbeck, measuring Wind Speed and Direction, amount of Rain, Lux and UV and Temperature and Humidity as well as Pressure. Running on a RaspberryPi4 and a Sensebox MCU.
