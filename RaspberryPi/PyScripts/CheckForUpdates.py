@@ -77,4 +77,4 @@ if __name__ == "__main__":
         logger.warning(str(datetime.datetime.now()) + " : " +str(resetCheck))
         message = "Raspberry updated:" + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
         telegram_notify(message)
-    logger.info("Check complete.)
+    logger.info("Check complete.")
