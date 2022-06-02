@@ -1,2 +1,3 @@
 # AFGHB Weather Station - Arduino Update Branch
-Pushing on this Branch will update the code on the senseBoxMCU unit inside of the Weather-Station. Use with caution!
+A push onto this branch will cause the uploaded code to be compiled and flashed up on to the mcu inside the weathercontrol-unit. All pushes must be accepted by a maintainer to avoid issues with operation. 
+**Use with caution!**
