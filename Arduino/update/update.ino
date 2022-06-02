@@ -29,8 +29,8 @@ void setup() {
     senseBoxIO.powerI2C(true);
     delay(250);
     senseBoxIO.powerXB2(true);
-    //Serial.print("Samplesize: ");
-    //Serial.println(samplesize);
+    Serial.print("Samplesize: ");
+    Serial.println(samplesize);
   }
   hdc.begin();
   vml.begin();
