@@ -60,3 +60,5 @@ ifclient = InfluxDBClient(ifhost,ifport,ifuser,password=None,database=ifdb)
 
 # write the measurement
 ifclient.write_points(body)
+
+ifclient.close()
