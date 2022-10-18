@@ -17,7 +17,7 @@ ch = logging.StreamHandler()
 ch.setLevel(logging.INFO)
 logger.addHandler(ch)
 
-fh = logging.FileHandler('logs/Updater.log')
+fh = logging.FileHandler('/home/WeatherStation/logs/Updater.log')
 fh.setLevel(logging.WARNING)
 logger.addHandler(fh)
 
