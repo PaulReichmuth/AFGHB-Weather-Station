@@ -31,7 +31,7 @@ parser.add_argument('dir', metavar='directory', type=str ,help='directory to upd
 
 aggregated = ""
 branch = "master"
-gitDir = "./"
+gitDir = "/home/WeatherStation/updateable/"
 
 def telegram_notify(bot_message):
     bot_token = '1198116152:AAGnSQK62eVTi1Lz1D5_8SHXkhJ_q0tF_4U'
