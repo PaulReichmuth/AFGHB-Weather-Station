@@ -1,5 +1,5 @@
 [Unit]
-Description=My test service
+Description=Parses the information coming through the Serial Port into InfluxDB
 After=multi-user.target
 [Service]
 Type=simple

@@ -72,9 +72,12 @@ def ProcessFetch(char, stdin):
 if __name__ == "__main__":
     logger.info("*********** Checking for code update **************")
     if CheckForUpdate(gitDir):
+        os.system("sudo systemctl stop SerialToInflux_Parser.service")
         logger.info("Resetting code...")
         resetCheck = git("--git-dir=" + gitDir + ".git/", "--work-tree=" + gitDir, "reset", "--hard", "origin/" + branch)
         logger.warning(str(datetime.datetime.now()) + " : " +str(resetCheck))
         message = "Raspberry updated:" + "\n" + str(resetCheck).strip("HEAD ist jetzt bei")
         telegram_notify(message)
+        os.system("sudo systemctl daemon-reload")
+        os.system("sudo systemctl start SerialToInflux_Parser.service")
     logger.info("Check complete.")
