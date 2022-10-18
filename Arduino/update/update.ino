@@ -58,7 +58,6 @@ void loop() {
     lights[i] = lux.getIlluminance();
     Serial.print("Took Sample Num.: ");
     Serial.println(i);
-    Serial.println(pressures[i]);
     delay(1000);
   }
   int avgdir = round(average(dirs, 60));
